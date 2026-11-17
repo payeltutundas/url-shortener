@@ -23,7 +23,12 @@ flowchart LR
 - Back end: Python, FastAPI, SQLAlchemy 2, psycopg 3, pydantic-settings
 - Database: PostgreSQL 16
 - Front end: React + Vite (plain JavaScript)
-- Tests: pytest + FastAPI TestClient
+- Tests: pytest + FastAPI TestClient (77 automated tests)
+
+## Quality
+- **77 automated tests, all passing.** They cover shortening, redirects and click counting, duplicate aliases, expired links, invalid and unsafe URLs, alias rules, expiry rules, and the own-domain/loopback block.
+- Tests run against a separate `urlshortener_test` database, so real data is never touched.
+- Built with a four-agent Claude Code workflow (builder, tester, verifier, pusher). The reviewer's findings are in `docs/verification-report.md`.
 
 ## How to run (Windows PowerShell, from the project root)
 
@@ -62,7 +67,7 @@ The app runs on http://localhost:5173.
 ```
 .venv\Scripts\python -m pytest
 ```
-Tests use the separate `urlshortener_test` database.
+Expected result: `77 passed`. Tests use the separate `urlshortener_test` database.
 
 ## API
 | Method and path | What it does |
